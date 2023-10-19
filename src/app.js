@@ -9,11 +9,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 require("dotenv/config");
-const port = process.env.PORT;
+const port = 8080;
 // Connect to MongoDB database
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
-  console.log("Connected to DB!")
+mongoose.connect(
+  "mongodb+srv://Mavericks:Mavericks123@cluster0.edxqwrh.mongodb.net/TweetDetails?retryWrites=true&w=majority",
+  { useNewUrlParser: true },
+  () => console.log("Connected to DB!")
 );
 app.get("/", async (req, res) => {
   try {
