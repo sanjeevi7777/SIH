@@ -2,12 +2,14 @@ const mongoose = require("mongoose");
 const Detail = require("./models/Detail");
 const express = require("express");
 const router = express.Router();
-require("dotenv").config();
+// require("dotenv").config();
 // Connect to MongoDB database
 mongoose.set("strictQuery", false);
-const url = process.env.DATABASE_URL;
-mongoose.connect(url, { useNewUrlParser: true }, () =>
-  console.log("Connected to DB!")
+// const url = process.env.DATABASE_URL;
+mongoose.connect(
+  "mongodb+srv://Mavericks:Mavericks123@cluster0.edxqwrh.mongodb.net/TweetDetails?retryWrites=true&w=majority",
+  { useNewUrlParser: true },
+  () => console.log("Connected to DB!")
 );
 router.get("/", async (req, res) => {
   try {
