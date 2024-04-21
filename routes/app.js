@@ -14,8 +14,9 @@ mongoose.connect(
 );
 router.get("/", async (req, res) => {
   try {
-    const Details = await Detail.find();
-    res.json(Details);
+    // const Details = await Detail.find();
+    // res.json(Details);
+    res.json({ mess: "Hello" });
   } catch (err) {
     res.json({ message: err });
   }
