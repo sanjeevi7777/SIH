@@ -7,16 +7,15 @@ const router = express.Router();
 mongoose.set("strictQuery", false);
 // const url = process.env.DATABASE_URL;
 mongoose.connect(
-  // "mongodb+srv://Mavericks:Mavericks123@cluster0.edxqwrh.mongodb.net/TweetDetails?retryWrites=true&w=majority",
   "mongodb+srv://Mavericks:Mavericks@cluster0.dfkwhsx.mongodb.net/TweetDetails?retryWrites=true&w=majority",
   { useNewUrlParser: true },
   () => console.log("Connected to DB!")
 );
 router.get("/", async (req, res) => {
   try {
-    // const Details = await Detail.find();
-    // res.json(Details);
-    res.json({ mess: "Hello" });
+    const Details = await Detail.find();
+    res.json(Details);
+    // res.json({ mess: "Hello" });
   } catch (err) {
     res.json({ message: err });
   }
