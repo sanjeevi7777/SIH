@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Detail = require("./models/Detail");
+const User = require("./models/User");
 const express = require("express");
 const router = express.Router();
 // require("dotenv").config();
@@ -29,4 +30,23 @@ router.get("/id/:id", async (req, res) => {
   // console.log();
   // return req;
 });
+router.get("/user/:email/:password", async (req, res) => {
+  const { email, password } = req.params;
+
+  try {
+    // Fetch user with the provided email and password
+    const user = await User.findOne({ email, password });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // If user found, respond with user data
+    res.json(user);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 module.exports = router;
