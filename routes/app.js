@@ -15,13 +15,18 @@ router.get("/", async (req, res) => {
   try {
     const Details = await Detail.find();
     res.json(Details);
-    // res.json({ mess: "Hello" });
   } catch (err) {
     res.json({ message: err });
   }
-  // return res.status(200).json({
-  //   title: "Express Testing",
-  //   message: "The app is working properly!",
-  // });
+});
+router.get("/id/:id", async (req, res) => {
+  try {
+    const detail = await Detail.findById(req.params.id);
+    res.json(detail);
+  } catch (err) {
+    res.json({ message: err });
+  }
+  // console.log();
+  // return req;
 });
 module.exports = router;
