@@ -1,14 +1,21 @@
-// Import packages
 const express = require("express");
-const home = require("./routes/app");
-
-// Middlewares
 const app = express();
-app.use(express.json());
+const router = express.Router();
 
-// Routes
-app.use("/", home);
+// Middleware function
+const middlewareFunction = (req, res, next) => {
+    // Your middleware logic here
+    next();
+};
 
-// connection
-const port = 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+// Correct usage of Router.use()
+router.use(middlewareFunction);
+
+// Importing and using the router from app.js
+const apiRouter = require('./routes/app');
+app.use('/api', apiRouter);
+
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
